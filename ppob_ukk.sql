@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2019 at 04:47 AM
+-- Generation Time: Oct 31, 2019 at 07:57 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -41,7 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama_admin`, `id_level`) VALUES
-(1, 'Fajar', 'admin123', 'Fajar Rizki ', 1);
+(1, 'Fajar', 'admin123', 'Fajar Rizki ', 1),
+(2, 'Budi', 'manager123', 'Budi Danu', 3);
 
 -- --------------------------------------------------------
 
@@ -78,6 +79,13 @@ CREATE TABLE `pelanggan` (
   `alamat` text NOT NULL,
   `id_tarif` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `username`, `password`, `nomor_kwh`, `nama_pelanggan`, `alamat`, `id_tarif`) VALUES
+(1, 'Haqi', 'pelanggan123', '76548', 'Haqi Ilman', 'jl.Melati', 1);
 
 -- --------------------------------------------------------
 
@@ -140,6 +148,13 @@ CREATE TABLE `tarif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tarif`
+--
+
+INSERT INTO `tarif` (`id_tarif`, `daya`, `tarifperkwh`) VALUES
+(1, '220watt', 50000);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -198,7 +213,7 @@ ALTER TABLE `tarif`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -210,7 +225,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -234,7 +249,7 @@ ALTER TABLE `tagihan`
 -- AUTO_INCREMENT for table `tarif`
 --
 ALTER TABLE `tarif`
-  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
