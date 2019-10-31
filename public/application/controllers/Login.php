@@ -11,8 +11,8 @@ class Login extends CI_Controller {
 
 	public function proses(){
     $this->load->model('m_login');
-    $username = $this->input->get('username');
-    		$password = $this->input->get('password');
+    $username = $this->input->post('username');
+    		$password = $this->input->post('password');
     		$where = array(
     			'username' => $username,
     			'password' => $password
@@ -26,11 +26,14 @@ class Login extends CI_Controller {
     				);
 
     			$this->session->set_userdata($data_session);
-
-    			redirect(base_url("index.php/Home"));
+    			$dt['status']=1;
+				echo json_encode($dt);
+    			// redirect(base_url("index.php/Home"));
     		}else{
-    			$this->session->set_flashdata('pesan', 'Password atau Username Tidak Benar!');
-          		redirect('Home');
+    			// $this->session->set_flashdata('pesan', 'Password atau Username Tidak Benar!');
+       //    		redirect('Home');
+    			$dt['status']=0;
+				echo json_encode($dt);
     		}
   }
 

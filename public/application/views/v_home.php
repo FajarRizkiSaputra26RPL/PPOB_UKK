@@ -113,7 +113,7 @@
           <h5 class="modal-title" style="font-size:30px;" >LOGIN</h5>
         </div>
         <div class="modal-body">
-          <form id="form-login" action="<?php echo base_url()?>index.php/Login/proses">
+          <form id="sign_in" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1" >Username</label>
           <input type="text" class="form-control" name="username" id="username" placeholder="Username">
@@ -129,15 +129,11 @@
           <a href="<?=base_url()?>index.php/signin"> Dont have an account?</a>
         </div>
         </form>
+        <div id="pesan">
+          
+        </div>
         </div><br>
-         <?php
-            $pesan = $this->session->flashdata('pesan');
-                if($pesan != NULL){
-                  echo '
-                    <div class="alert alert-danger">'.$pesan.'</div>
-                  ';
-                }
-              ?>
+       
       </div>
       <div class="col-md-5">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -897,6 +893,40 @@
 
   <!-- Template Main Javascript File -->
   <script src="<?=base_url()?>assets_public/js/main.js"></script>
+  <script type="text/javascript">
+      $('#sign_in').submit(function(event){
+          event.preventDefault();
+          var datalogin=$('#sign_in').serialize();
+          $.ajax({
+            url:"<?= base_url()?>index.php/Login/proses",
+            data:datalogin,
+            type:"post",
+            dataType:"json",
+            success:function(hasil){
+                if (hasil['status']==1) 
+                {
+                    $("#pesan").html("Tunggu sebentar");
+                    $("#pesan").show('animate');
+                    $("#pesan").addClass("alert alert-warning");
+                    setTimeout(function(){
+                        location.href="<?= base_url()?>index.php/home";
+                    }, 500);
+                }
+                else
+                {
+                    $("#pesan").html("Username password tidak cocok");
+                    $("#pesan").show('animate');
+                    $("#pesan").addClass("alert alert-danger");
+                    setTimeout(function(){
+                        $("#pesan").hide('animate');
+                        $("#pesan").removeClass("alert alert-danger");
+                    }, 2000);
+                }
+            }
+
+          });
+      });
+  </script>
 
 </body>
 </html>
