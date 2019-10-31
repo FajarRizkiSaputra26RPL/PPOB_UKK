@@ -8,7 +8,8 @@
       $username = $this->input->post('username');
       $password = $this->input->post('password');
 
-      $query = $this->db->where('username', $username)
+      $query = $this->db->join('level', 'level.id_level = admin.id_level')
+                        ->where('username', $username)
                         ->where('password', $password)
                         ->get('admin');
 
@@ -17,7 +18,7 @@
         $data_login = $query->row();
         $data_session = array(
                           'username'  => $username,
-                          'level'     => $data_login->level,
+                          'id_level'     => $data_login->id_level,
                           'login_status'  => TRUE
 
                         );

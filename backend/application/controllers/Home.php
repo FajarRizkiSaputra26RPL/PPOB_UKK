@@ -13,7 +13,7 @@ class Home extends CI_Controller {
 	{
 		if($this->session->userdata('login_status') == TRUE){
 
-		$data['v_content'] = 'v_content';
+		$data['content_view'] = 'v_content';
 		$this->load->model('m_home');
 		$this->load->view('v_dashboard', $data);
 	} 
